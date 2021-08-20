@@ -1,0 +1,56 @@
+<!--logo-->
+<div class="text-center mt-4">
+    <span class="fa-stack fa-2x">
+      <i class="fas fa-square fa-stack-2x"></i>
+      <i class="fas fa-mountain fa-stack-1x fa-inverse"></i>
+    </span>
+    <h2 class="">Mountain Bike Manager</h2>
+  </div>
+  <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+  <!--Login Form-->
+  <form class="mt-5" [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text bg-dark text-white">
+              <i class="fas fa-user"></i>
+            </div>
+          </div>
+          <input class="form-control" type="text" placeholder="Username" formControlName="username">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span *ngIf="form.get('username')?.valid"
+              class="fas fa-check-circle text-success"></span> 
+              <span  *ngIf="form.get('username')?.invalid"
+               class="fas fa-times-circle text-danger"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group mt-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text bg-dark text-white">
+              <i class="fas fa-lock"></i>
+            </div>
+          </div>
+          <input class="form-control" type="password" placeholder="Password" formControlName="password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span *ngIf="form.get('password')?.valid"
+               class="fas fa-check-circle text-success"></span> 
+               
+              <span  *ngIf="form.get('password')?.invalid"
+              class="fas fa-times-circle text-danger"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-5">
+        <button [disabled]="form.invalid"
+        class="btn btn-lg btn-block btn-dark text-white">
+          <span *ngIf="!isLoading">Sign On <i class="fas fa-arrow-alt-circle-right"></i></span>
+          <span *ngIf="isLoading"><i class="fas fa-spinner fa-spin"></i></span>
+        </button>
+      </div>
+  </form>
